@@ -1,0 +1,280 @@
+														
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <script src="http://membres-liglab.imag.fr/PPerso/membres/donsez/cours/exemplescourstechnoweb/js_securehash/md5.js"></script>
+    <script language="javascript">
+        function check()
+        {
+            var msg = "Following mandatory information are missing for checksum:-\n";
+            var flag = "false";
+
+            if (document.form1.memberId.value.length == 0)
+            {
+                msg = msg + "\nPlease enter MemberID.";
+                document.form1.memberId.select();
+                document.form1.memberId.focus();
+                flag = "true";
+            }
+            if (document.form1.totype.value.length == 0)
+            {
+                msg = msg + "\nPlease enter Totype.";
+                document.form1.totype.select();
+                document.form1.totype.focus();
+                flag = "true";
+            }
+            if (document.form1.amount.value.length == 0)
+            {
+                msg = msg + "\nPlease enter Totype.";
+                document.form1.amount.select();
+                document.form1.amount.focus();
+                flag = "true";
+            }
+            if (document.form1.merchantTransactionId.value.length == 0)
+            {
+                msg = msg + "\nPlease enter Description.";
+                document.form1.merchantTransactionId.select();
+                document.form1.merchantTransactionId.focus();
+                flag = "true";
+            }
+            if (document.form1.merchantRedirectUrl.value.length == 0)
+            {
+                msg = msg + "\nPlease enter Redirect URL.";
+                document.form1.merchantRedirectUrl.select();
+                document.form1.merchantRedirectUrl.focus();
+                flag = "true";
+            }
+            if (document.form1.mkey.value.length == 0)
+            {
+                msg = msg + "\nPlease enter Member Key.";
+                document.form1.mkey.select();
+                document.form1.mkey.focus();
+                flag = "true";
+            }
+
+            if (flag == "true")
+            {
+                alert(msg);
+                return false;
+            }
+            else
+            {
+                var message=document.form1.memberId.value+"|"+document.form1.totype.value+"|"+document.form1.amount.value+"|"+document.form1.merchantTransactionId.value+"|"+document.form1.merchantRedirectUrl.value+"|"+document.form1.mkey.value ;
+                alert(message)
+                var hash = calcMD5(message);
+                alert(hash);
+
+				document.form1.action = "https://testUrl.com/transaction/PayProcessController?checksum="+hash;
+                return true;
+            }
+
+        }
+
+    </script>
+    <title>DocsPartner Standard Kit </title>
+</head>
+<body>
+<center>
+
+    <form action="" method="POST" style="width:800px;height:550;background-color:gray" onsubmit="return check();" name="form1">
+        <table border="1" cellspacing="0" cellpadding="0" align="center" bordercolor="#E4D6C9">
+            <tr>
+                <td>
+                    <table width="800" border="0" cellspacing="0" cellpadding="0" align="center" bordercolor="#E4D6C9" bgcolor="#CCE0FF">
+                        <tr>
+                            <td width="32%" height="20">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan=2>DocsPartner Standard Kit</td>
+                        </tr>
+                        <tr>
+                            <td >&nbsp;</td>
+                            <td >&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td ><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Member
+                                ID : </font></b></div></td>
+                            <td ><div align="left"><input type="text" name="memberId"  value="11344"></div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">To
+                                Type: </font></b></div></td>
+                            <td ><div align="left"><input type="text" name="totype"  value="docspartner"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Member Key
+                                :</font></b></div>
+                            </td>
+                            <td > <div align="left"><input type="text" name="mkey"  value="9P8vdzPP4oL9BeDgko3ti6HGnou59LEB"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Description :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="merchantTransactionId"  value="">
+                                <font size="2"><font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"><b>Enter
+                                    a unique order number else the transaction will get locked</b></font></font></font>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Amount
+                                :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="amount"  value="1.00">
+                                <font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"><b>
+                                    Enter the transaction currency</b></font></font>
+                            </div></td>
+                        </tr>
+						 <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">TMPL_AMOUNT
+                                :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="TMPL_AMOUNT"  value="1.00">
+                                <font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"><b>
+                                    Enter the transaction currency</b></font></font>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Order Description
+                                :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="orderDescription"  value="Test Transaction">
+                                <font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"><b>
+                                    Enter the Order description</b></font></font>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Redirect URL
+                                :</font></b></div>
+                            </td>
+                            <td > <div align="left"><input type="text" name="merchantRedirectUrl"  value="https://merchantredirecturl.com/TestApp/redirecturl.jsp"></div>
+                            </td>
+                        </tr>
+						
+						
+						
+						<tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Notification URL
+                                :</font></b></div>
+                            </td>
+                            <td > <div align="left"><input type="text" name="notificationUrl"  value="https://merchantnotificationurl.com/transaction/TestBENotification"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">ISO
+                                Country Code :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="country"  value="IN"></div>
+
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">City
+                                :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="city"  value="Mumbai"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">State
+                                :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="state"  value="MH"></div>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Zip
+                                Code :</font></b></div></td>
+                            <td >  <div align="left"><input type="text" name="postcode"  value="400064">
+                                <font size="2"><font color="#CC0000" face="Arial, Helvetica, sans-serif" size="1"></font></font></div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Street
+                                :</font></b></div></td>
+                            <td >  <div align="left"><input type="text" name="street"  value="Malad">
+                                <font size="2"><font color="#CC0000" face="Arial, Helvetica, sans-serif" size="1"></font></font></div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Phone
+                                :</font></b></div></td>
+                            <td>  <div align="left"><input type="text" name="telnocc" size="5" value="091">
+                                -
+                                <input type="text" name="phone" size="20" value="9854785236"> <font size="2"><font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"><b>Example
+                                    (Country Code - Phone Number)</b></font></font></font></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Email Address
+                                :</font></b></div></td>
+                            <td> <div align="left"><input type="text" name="email"  value="komal.kale@email.com">
+
+                                <font size="2"><font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"><b>Customer Mail</b></font></font></font>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">IP Address
+                                :</font></b></div></td>
+                            <td> <div align="left"><input type="text" name="ip"  value="192.168.0.1">
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Currency
+                                :</font></b></div></td>
+                            <td>  <div align="left"><input type="text" name="currency"  value="USD">
+                            </div></td>
+                        </tr>
+						 <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">TMPL_CURRENCY
+                                :</font></b></div></td>
+                            <td>  <div align="left"><input type="text" name="TMPL_CURRENCY"  value="USD">
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Terminal
+                                Id:</font></b></div></td>
+                            <td>  <div align="left"><input type="text" name="terminalid"  value=""> </div></td>
+                        </tr>
+						<tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">ReserveField1
+							:</font></b></div></td>
+                            <td>  <div align="left"><input type="text" name="reservedField1"  value=""> </div></td>
+                        </tr>
+						
+						<tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Payment type
+                                :</font></b></div>
+                            </td>
+                            <td > <div align="left"><input type="text" name="paymentMode"  value=""></div>
+                            </td>
+                        </tr>
+			
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Card type
+                                :</font></b></div>
+                            </td>
+                            <td > <div align="left"><input type="text" name="paymentBrand"  value=""></div>
+                            </td>
+                            <input id="version" type="hidden" name="version"  value="4.0">
+                        </tr>
+						
+						<tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Customer ID
+                                :</font></b></div>
+                            </td>
+                            <td > <div align="left"><input type="text" name="customerId"  value=""></div>
+                            </td>
+                            <input id="version" type="hidden" name="version"  value="4.0">
+                        </tr>
+						
+                        <tr>
+                            <td >&nbsp;</td>
+                            <td >&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2"><input id="submit" type="Submit" value="PAY NOW" name="submit" ></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+</center>
+</body>
+</html>
